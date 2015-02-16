@@ -3,21 +3,22 @@
  */
 $(document).ready(function() {
 
+    // on click make request
     $('.title a').not('#zipcode, #zip').click(function(e){
-        $('div .large-6').empty();
+        $('div .large-6').empty(); // removes existing elements
         e.preventDefault(); //stop default action of the link
         filter = 'type=' + $(this).attr('href');  //get category from URL
-        console.log(filter);
         loadAJAX(filter);  //load AJAX and parse JSON file
     });
+    // onchange of text in make request
     $('#zip').change(function(){
-        $('div .large-6').empty();
-        filter = 'zip=' + $(this).val();
-        console.log(filter);
+        $('div .large-6').empty(); // removes existing elements
+        filter = 'zip=' + $(this).val(); // gets value from text input
         loadAJAX(filter);
     });
 });
 
+// ajax function that accepts filter arguments
 function loadAJAX(filter)
 {
     console.log('schoolapi.php?' + filter);
@@ -29,8 +30,9 @@ function loadAJAX(filter)
     });
 
 }
-
+// parses json data, creates new DOM elements, and adds them to page.
 function parseJSON(data){
+    // for each object creates new Div with data for school.
     $.each(data.schools, function(i,item){
         var row = $("<div></div>").addClass('row').append(
             $('<div></div>').addClass('large-2 columns small-3').append(
@@ -71,6 +73,7 @@ function parseJSON(data){
                 )
             )
         );
+        // appends new DOM element to page
         $('div .large-6').append(row, $('<hr/>'))
     });
 }
