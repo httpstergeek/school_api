@@ -16,6 +16,6 @@ if (!empty($_REQUEST)) {
             array_push($matches, $school);
         }
     }
-    $schools = array("school" => $matches);
+    $schools = array("schools" => $matches);
 }
 echo json_encode($schools, JSON_PRETTY_PRINT);
