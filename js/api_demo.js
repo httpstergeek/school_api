@@ -57,6 +57,10 @@ function parseJSON(data){
                         $('<span></span>').text(' '+ item.address)
                     ),
                     $('<li></li>').append(
+                        $('<strong></strong>').text('zipcode: '),
+                        $('<span></span>').text(' '+ item.zip)
+                    ),
+                    $('<li></li>').append(
                         $('<strong></strong>').text('phone: '),
                         $('<span></span>').text(' '+ item.phone)
                     ),
