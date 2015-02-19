@@ -1,10 +1,10 @@
 <?php
 // retrieves json data from file
-$schools = file_get_contents("data/seattle_schools.js");
+$schools = file_get_contents("data/seattle_schools.json");
+// decoding local file
+$json_encoded = json_decode($schools, true);
 // checking for filter arguments
 if (!empty($_REQUEST)) {
-    // decoding local file
-    $json_encoded = json_decode($schools, true);
     // creating array will uses as associative
     $matches = array();
     // foreach element in json object
@@ -24,6 +24,9 @@ if (!empty($_REQUEST)) {
     }
     // adds key to top level.
     $schools = array("schools" => $matches);
+} else {
+    $schools = $json_encoded;
 }
 // encodes object as json with pretty print
-echo json_encode($schools, JSON_PRETTY_PRINT);
+header('Content-type: application/javascript');
+echo json_encode($schools);
